@@ -17,7 +17,7 @@ export default function ChallengePage1() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     console.log("Submitted password:", finalPassword)
-    if(finalPassword === "helloworld") {
+    if(finalPassword === "admin") {
       alert("Congratulations! You've solved the mystery. Look for the killer somewhere idk add your story line or whatever.")
       window.open("/challenge2?user=vjn&pass=notnull", "_self")
       localStorage.setItem("challenge1", "complete")
