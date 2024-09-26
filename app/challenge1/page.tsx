@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { AlertCircle } from "lucide-react"
-
+import data from '@/app/data.json'
+console.log(data);
 export default function ChallengePage1() {
   const [finalPassword, setFinalPassword] = useState("")
 
