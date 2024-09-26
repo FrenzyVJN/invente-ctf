@@ -1,5 +1,5 @@
 'use client'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
@@ -14,7 +14,9 @@ export default function ChallengePage1() {
     { title: "The Cryptic Note", content: "A crumpled note found in the victim's hand reads: '3-7-2-9'. What could it mean?" },
     { title: "The Misplaced Book", content: "In the library, one book is out of place. Its call number is 'M364.1523'. What's the book about?" },
   ]
-
+  useEffect(() => {
+    localStorage.getItem('loggedIn') === 'true' ? null : window.open("/login", "_self")
+  },[])
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     console.log("Submitted password:", finalPassword)

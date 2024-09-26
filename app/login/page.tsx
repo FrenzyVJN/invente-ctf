@@ -19,6 +19,8 @@ export default function LoginPage() {
     for(let i=0;i<data.users.length;i++){
         if (data.users[i].name === name && data.users[i].email === email){
             console.log("User found");
+            localStorage.setItem('user', JSON.stringify(data.users[i]))
+            localStorage.setItem('loggedIn', 'true')
             router.push('/challenge1')
             return;
         }
