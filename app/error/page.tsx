@@ -27,4 +27,4 @@ export default function ErrorPage() {
       <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-red-900 to-transparent opacity-50" />
     </div>
   )
-}
+} 

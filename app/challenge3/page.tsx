@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Avatar } from "@/components/ui/avatar"
 import { Skull, User } from 'lucide-react'
 
 type Message = {
@@ -38,6 +38,36 @@ export default function Challenge3() {
     }
   }, [messages])
 
+  // API Call to Validate Time and Get Reply Message
+  const validateTime = async (time: string) => {
+    try {
+      const res = await fetch('/api/challenge3', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ time }),
+      })
+      const data = await res.json()
+
+      if (data.success) {
+        const responseMessage: Message = {
+          id: messages.length + 1,
+          sender: 'Unknown',
+          content: data.message, // Use the message from API
+          timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false }),
+        }
+        setMessages((prevMessages) => [...prevMessages, responseMessage])
+        setShowClue(true)
+      } else {
+        alert('Invalid time. Try again.')
+      }
+    } catch (error) {
+      console.error('Error validating time:', error)
+      alert('An error occurred. Please try again.')
+    }
+  }
+
   const handleSendMessage = (e: React.FormEvent) => {
     e.preventDefault()
     if (inputMessage.trim() === '') return
@@ -52,19 +82,8 @@ export default function Challenge3() {
     setMessages([...messages, newMessage])
     setInputMessage('')
 
-    // Check if the input message is the correct time
-    if (inputMessage.trim() === '11:17') {
-      setTimeout(() => {
-        const responseMessage: Message = {
-          id: messages.length + 2,
-          sender: 'Unknown',
-          content: "You've cracked the code. The evidence is at coordinates 51.5074° N, 0.1278° W",
-          timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })
-        }
-        setMessages(prevMessages => [...prevMessages, responseMessage])
-        setShowClue(true)
-      }, 1000)
-    }
+    // Validate the time with the API call
+    validateTime(inputMessage.trim())
   }
 
   return (

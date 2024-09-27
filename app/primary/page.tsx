@@ -3,31 +3,37 @@ import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { AlertCircle } from "lucide-react"
-import data from '@/app/data.json'
-console.log(data);
+import { useRouter } from 'next/navigation'
+
 export default function ChallengePage1() {
   const [finalPassword, setFinalPassword] = useState("")
+  const router = useRouter()
 
   const challenges = [
     { title: "The Broken Clock", content: "The grandfather clock in the study stopped at 11:17. What's significant about this time?" },
     { title: "The Cryptic Note", content: "A crumpled note found in the victim's hand reads: '3-7-2-9'. What could it mean?" },
     { title: "The Misplaced Book", content: "In the library, one book is out of place. Its call number is 'M364.1523'. What's the book about?" },
   ]
-  useEffect(() => {
-    localStorage.getItem('loggedIn') === 'true' ? null : window.open("/login", "_self")
-  },[])
-  const handleSubmit = (e: React.FormEvent) => {
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Submitted password:", finalPassword)
-    if(finalPassword === "admin") {
-      alert("Congratulations! You've solved the mystery. Look for the killer somewhere idk add your story line or whatever.")
-      window.open("/challenge2?user=vjn&pass=notnull", "_self")
-      localStorage.setItem("challenge1", "complete")
-    } else {
+
+    try {
+      const response = await fetch('/api/challenge1', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ finalPassword }),
+      })
+
+      const result = await response.json()
+      if (response.ok && result.correct) {
+        alert("Congratulations! You've solved the mystery.")
+        router.push('/challenge2') // Redirect to challenge 2
+      } else {
         alert("Incorrect password. Keep investigating!")
-        window.open("/error", "_self")
-        window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank")
+      }
+    } catch (error) {
+      console.error("Error submitting password:", error)
     }
   }
 
@@ -42,8 +48,8 @@ export default function ChallengePage1() {
       <div className="grid grid-cols-2 gap-4 mb-8">
         {challenges.map((challenge, index) => (
           <Dialog key={index}>
-            <DialogTrigger asChild className="bg-slate-800 border-red-800 hover:bg-opacity-20 hover:bg-inherit hover:text-blue-200">
-              <Button variant="outline" className="w-full h-32 text-lg">
+            <DialogTrigger asChild>
+              <Button variant="outline" className="w-full h-32 text-lg bg-slate-800 border-red-800 hover:bg-opacity-20 hover:bg-inherit hover:text-blue-200">
                 {challenge.title}
               </Button>
             </DialogTrigger>

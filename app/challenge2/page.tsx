@@ -1,26 +1,59 @@
 'use client'
-import { useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { AlertTriangle } from "lucide-react"
-import { useEffect } from 'react';
 
-export default function ErrorPage() {
-    const searchParams = useSearchParams();
-    const user = searchParams.get('user');
-    const pass = searchParams.get('pass');
-    console.log(user,pass);
-    useEffect(() => {
-        if(user !== "vjn" || pass !== "admin") {
-            alert("Invalid credentials. You must complete the second challenge before proceeding.")
-            window.open("/challenge2?user=vjn&pass=notnull", "_self")
-        }
-        else if (user === "vjn" && pass === "admin") {
-            alert("You've solved the mystery. Look for the killer somewhere idk add your story line or whatever.")
-            localStorage.setItem("challenge2", "complete")
-            window.open("/challenge3", "_self")
-        }
-    }, [])
+export default function Challenge2Page() {
+  const [teamName, setTeamName] = useState<string | null>(null);
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  // Function to validate the password via API
+  const validatePassword = async (password: string) => {
+    try {
+      const res = await fetch("/api/challenge2", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ password }),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        alert("Congratulations! You've solved the second challenge.");
+        router.push("/challenge3");
+      } else {
+        alert("Invalid password. You must complete the second challenge.");
+      }
+    } catch (error) {
+      console.error("Error validating password:", error);
+      alert("An error occurred while validating your password.");
+    }
+  };
+
+  useEffect(() => {
+    // Retrieve team name from localStorage
+    const storedTeamName = localStorage.getItem('teamName');
+    console.log(storedTeamName);
+    setTeamName(storedTeamName);
+
+    // Get password from URL
+    const passwordFromUrl = searchParams?.get("pwd");
+
+    if (!passwordFromUrl) {
+      alert("Invalid credentials. You must complete the second challenge before proceeding.");
+      router.push(`/challenge2?usr=${storedTeamName}&pwd=notnull`);
+    } else if (passwordFromUrl) {
+      // Password is in the URL, validate it with the API
+      validatePassword(passwordFromUrl);
+    }
+  }, [router]);
+
+
   return (
     <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center relative">
       <div 
@@ -44,5 +77,5 @@ export default function ErrorPage() {
       </div>
       <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-red-900 to-transparent opacity-50" />
     </div>
-  )
+  );
 }

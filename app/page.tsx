@@ -19,7 +19,7 @@ export default function LandingPage() {
         <h1 className="text-5xl font-extrabold text-red-600" style={{ textShadow: "2px 2px 4px rgba(0,0,0,0.5)" }}>Murder at Midnight Manor</h1>
         <p className="text-xl">Unravel the mystery, crack the code, find the killer.</p>
         <Button asChild className="bg-red-800 hover:bg-red-900 text-white border border-red-600">
-          <Link href="/login">Enter the Manor</Link>
+          <Link href="/register">Enter the Manor</Link>
         </Button>
       </div>
       <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-red-900 to-transparent opacity-50" />
