@@ -21,7 +21,7 @@ export default function ErrorPage() {
         <h1 className="text-5xl font-extrabold text-red-600" style={{ textShadow: "2px 2px 4px rgba(0,0,0,0.5)" }}>Dead End</h1>
         <p className="text-xl">You've hit a wall in your investigation. The killer is still out there...</p>
         <Button asChild className="bg-red-800 hover:bg-red-900 text-white border border-red-600">
-          <Link href="/challenge1">Return to the Scene</Link>
+          <Link href="/primary">Return to the Scene</Link>
         </Button>
       </div>
       <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-red-900 to-transparent opacity-50" />
