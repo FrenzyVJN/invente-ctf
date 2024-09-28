@@ -21,12 +21,56 @@ export default function Challenge3() {
   const scrollAreaRef = useRef<HTMLDivElement>(null)
 
   const initialMessages: Message[] = [
-    { id: 1, sender: 'Unknown', content: "Detective, I have information about the murder at Midnight Manor.", timestamp: '23:17' },
-    { id: 2, sender: 'You', content: "Who is this? How did you get this number?", timestamp: '23:18' },
-    { id: 3, sender: 'Unknown', content: "That's not important. What matters is the evidence hidden in the victim's study.", timestamp: '23:19' },
-    { id: 4, sender: 'You', content: "What evidence? Where exactly?", timestamp: '23:20' },
-    { id: 5, sender: 'Unknown', content: "Behind the painting of the old clock. But be careful, the time is the key.", timestamp: '23:21' },
-  ]
+  {
+    "id": 1,
+    "sender": "You",
+    "content": "I did what you asked. There’s no need for this to go further.",
+    "timestamp": "10:30"
+  },
+  {
+    "id": 2,
+    "sender": "Unknown",
+    "content": "Did you really think it would be that simple, Victor? The secrets you’re hiding—those don’t just disappear.",
+    "timestamp": "10:31"
+  },
+  {
+    "id": 3,
+    "sender": "You",
+    "content": "I gave you everything. You have the keys. What more do you want?",
+    "timestamp": "10:32"
+  },
+  {
+    "id": 4,
+    "sender": "Unknown",
+    "content": "It’s not about what I want anymore. You should’ve known better than to cross me. Your encryption won’t save you.",
+    "timestamp": "10:34"
+  },
+  {
+    "id": 5,
+    "sender": "You",
+    "content": "This wasn’t part of the deal! You promised!",
+    "timestamp": "10:35"
+  },
+  {
+    "id": 6,
+    "sender": "Unknown",
+    "content": "The deal was never in your favor, Victor. You just couldn’t see it. But I’ll give you one last chance to redeem yourself.",
+    "timestamp": "10:36"
+  },
+  {
+    "id": 7,
+    "sender": "You",
+    "content": "What do you mean?",
+    "timestamp": "10:37"
+  },
+  {
+    "id": 8,
+    "sender": "Unknown",
+    "content": "Go to this link. Everything you’re trying to protect is there. What happens next is entirely up to you.",
+    "timestamp": "10:38"
+  }
+]
+
 
   useEffect(() => {
     setMessages(initialMessages)
@@ -110,11 +154,9 @@ export default function Challenge3() {
             </div>
           </div>
         ))}
-        {showClue && (
-          <div className="text-center my-4">
-            <p className="text-red-500 font-bold">Crucial evidence located. Proceed with caution.</p>
-          </div>
-        )}
+        <div className="text-center my-4">
+            <p className="text-red-500 font-bold">https://drive.google.com/file/d/1G_UxhSm_umwlHuascTwv780YOFKiQFJT/view</p>
+        </div>
       </ScrollArea>
       <form onSubmit={handleSendMessage} className="p-4 bg-gray-800">
         <div className="flex space-x-2">

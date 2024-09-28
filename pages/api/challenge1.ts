@@ -3,7 +3,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
     const { finalPassword } = req.body
-    const correctPassword = "admin"
+    const correctPassword = "5556325597"
 
     if (finalPassword === correctPassword) {
       res.status(200).json({ correct: true })

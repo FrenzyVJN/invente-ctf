@@ -6,7 +6,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const {password} = req.body;
 
   // Mock password check, you should use a proper backend validation
-  const storedPassword = "admin"; // You should fetch this from a secure database
+  const storedPassword = "5556325597"; // You should fetch this from a secure database
 
   if (!password) {
     return res.status(400).json({ message: "Missing teamName or password." });

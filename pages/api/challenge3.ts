@@ -2,16 +2,16 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
-    const { time } = req.body;
+    const { teamName } = req.body;
 
     // Define the correct time
-    const correctTime = '11:17';
+    const correctName = localStorage.getItem('teamName');
 
     // Check if the submitted time matches the correct time
-    if (time === correctTime) {
-      return res.status(200).json({ success: true, message: "You've cracked the code. The evidence is at coordinates 51.5074° N, 0.1278° W" });
+    if (teamName === correctName) {
+      return res.status(200).json({ success: true, message: "Go to this link. Everything you’re trying to protect is there. What happens next is entirely up to you."});
     } else {
-      return res.status(400).json({ success: false, message: 'Invalid time' });
+      return res.status(400).json({ success: false, message: 'Invalid Name' });
     }
   } else {
     res.setHeader('Allow', ['POST']);

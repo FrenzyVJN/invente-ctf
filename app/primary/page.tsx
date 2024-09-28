@@ -10,10 +10,10 @@ export default function ChallengePage1() {
   const router = useRouter()
 
   const challenges = [
-    { title: "The Broken Clock", content: "The grandfather clock in the study stopped at 11:17. What's significant about this time?" },
-    { title: "The Cryptic Note", content: "A crumpled note found in the victim's hand reads: '3-7-2-9'. What could it mean?" },
-    { title: "The Misplaced Book", content: "In the library, one book is out of place. Its call number is 'M364.1523'. What's the book about?" },
-  ]
+    { title: "The Paranoid Cryptographer", content: "During his last days, Victor's frantically attempted to leave a digital trail about his suspicions inside the hidden intricacies of the world of Hypertext Markup Languages." },
+    { title: "The Cryptic Image", content: "I can no longer trust my inner circle. Too many files have been corrupted. Too many logs wiped clean. I've traced anomalies back to someone who should never have had access... someone close to me. " },
+    { title: "The Hasty Clue", content: " \"They’re closing in. The truth is closer than you think.\"    This message confirms Victor was running out of time and knew he wouldn’t survive the conspiracy surrounding him. "},
+  ];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -46,6 +46,12 @@ export default function ChallengePage1() {
     }}>
       <h1 className="text-4xl font-bold mb-8 text-center text-red-600">The Manor's Secrets</h1>
       <div className="grid grid-cols-2 gap-4 mb-8">
+        <p className="hidden" id = "Hint 👀">Clue1: Victor knew he was being watched. I have little time left. They've been inside my systems. The more I uncover, the more danger I'm in. If you're reading this, you've found the first piece. They thought they could erase everything, but I've hidden the truth where they'd never think to look. This goes deeper than you know.
+          <br />
+          Clue2: Look at the next challenge, try reading through the image
+          <br />
+          Let the organisers know that you have found this clue!
+        </p>
         {challenges.map((challenge, index) => (
           <Dialog key={index}>
             <DialogTrigger asChild>
@@ -58,6 +64,8 @@ export default function ChallengePage1() {
                 <DialogTitle className="text-red-600">{challenge.title}</DialogTitle>
               </DialogHeader>
               <p>{challenge.content}</p>
+              {challenge.title === "The Cryptic Image" && (<img src="/image.png" alt="Cryptic Image" />)}
+              {challenge.title === "The Hasty Clue" && (<a href="/random.c" download="test.c" className="text-blue-400 underline"> Clue File</a>)}
             </DialogContent>
           </Dialog>
         ))}
