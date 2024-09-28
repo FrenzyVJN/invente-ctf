@@ -1,3 +1,10 @@
 {
-  "teams": []
+  "teams": [
+    {
+      "teamName": "FrenzyVJN",
+      "member1": "HelloWorld",
+      "member2": "404NotFound",
+      "member3": "Sad"
+    }
+  ]
 }

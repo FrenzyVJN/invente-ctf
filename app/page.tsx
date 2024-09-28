@@ -15,10 +15,10 @@ export default function LandingPage() {
         <div className="absolute top-10 left-10 w-32 h-32 rounded-full bg-red-800 opacity-20 blur-xl animate-pulse" />
         <div className="absolute bottom-20 right-20 w-48 h-48 rounded-full bg-red-800 opacity-20 blur-xl animate-pulse" />
       </div>
-      <div className="text-center space-y-6 p-8 bg-black bg-opacity-70 rounded-lg z-10 border border-red-800">
-        <h1 className="text-5xl font-extrabold text-red-600" style={{ textShadow: "2px 2px 4px rgba(0,0,0,0.5)" }}>Murder at Midnight Manor</h1>
-        <p className="text-xl">Unravel the mystery, crack the code, find the killer.</p>
-        <Button asChild className="bg-red-800 hover:bg-red-900 text-white border border-red-600">
+      <div className=" space-y-6 p-8 bg-black bg-opacity-70 rounded-lg z-10 border w-1/2 h-[36rem] border-red-800">
+        <h1 className="text-5xl text-center font-extrabold text-red-600" style={{ textShadow: "2px 2px 4px rgba(0,0,0,0.5)" }}>Murder Mystery</h1>
+        <p className="text-xl h-3/4 text-center overflow-y-auto">Victor Blackwood, a world-renowned cryptographer and tech mogul, was found dead in his mansion under suspicious circumstances.<br /><br /> Known for his groundbreaking work in encryption and cybersecurity, Victor had many admirers, but also many enemies. <br /><br /> In the weeks leading up to his death, Victor had grown increasingly paranoid, convinced that someone close to him was plotting against him.<br /><br />  His personal files and communications have been locked behind complex encryption schemes, with hidden clues scattered throughout his digital footprint.<br /><br /> As the investigator, it is your job to navigate this web of cryptic messages, uncover the truth behind Victor’s demise, and expose the identity of the killer lurking in the shadows.</p>
+        <Button asChild className="bg-red-800 mx-auto flex w-1/2 hover:bg-red-900 text-white border border-red-600">
           <Link href="/register">Enter the Manor</Link>
         </Button>
       </div>
