@@ -31,6 +31,7 @@ export default function ChallengePage1() {
         router.push('/challenge2') // Redirect to challenge 2
       } else {
         alert("Incorrect password. Keep investigating!")
+        // window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank")
       }
     } catch (error) {
       console.error("Error submitting password:", error)
