@@ -46,7 +46,7 @@ export default function Challenge2Page() {
 
     if (!passwordFromUrl) {
       alert("Invalid credentials. You must complete the second challenge before proceeding.");
-      router.push(`/challenge2?usr=${storedTeamName}&pwd=notnull`);
+      router.push(`/challenge2?usr=test&pwd=notnull`);
     } else if (passwordFromUrl) {
       // Password is in the URL, validate it with the API
       validatePassword(passwordFromUrl);
